@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}<!DOCTYPE html>
+
+{% block content %}
+<!--
+<nav class="navbar sticky-top navbar-dark bg-primary">
+<a class="navbar-brand" href="#!">Attendance</a>
+</nav> -->
+<div class="container">
+<div class="jumbotron">
+<h1 class="display-5">Attendance</h1>
+<p class="lead">This is a simple hero unit, a simple jumbotron-style component for
+              calling extra attention to featured content or information.</p>
+<hr class="my-2">
+<p>It uses utility classes for typography and
+ spacing to space content out within the larger container.</p>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+<input type="file" name="myfile" >
+
+  <button type="submit" class="btn btn-primary ">Upload</button>
+</form>
+</div>
+
+
+  {% if uploaded_file_url %}
+  <p>
+    <p>Image Uploaded: </p>
+    <img class="img-responsive" src="{{ uploaded_file_url }}"/>
+  </p>
+  {% endif %}
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+  </div>
+{% endblock %}
