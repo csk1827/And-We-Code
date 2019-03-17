@@ -1,0 +1,67 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Boards</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+     /* @font-face {
+     font-family: myFirstFont;
+     src: url(/home/likki/hf/hfn/hfnapp/norwester/norwester.otf);
+     } */
+    /* *{
+       font-family: myFirstFont;
+     } */
+
+     body {
+       background-color: #eeeeee;
+     }
+     top {
+       margin: auto;
+       font-family: "Segoe UI",Arial,sans-serif;
+       border-left: 100px;
+       border-right: 100px;
+       letter-spacing: 1.25px;
+       line-height: 0.5;
+       border-top: 100px;
+     }
+   </style>
+  </head>
+  <body>
+    <!-- body suppressed for brevity ... -->
+    <div class="top" style="background-color:lavenderblush;">
+      <div class="container">
+        <table class="table">
+          <thead class="thead-inverse">
+            <tr>
+              <th>S.No</th>
+              <th>Attendance</th>
+              <!-- <th>S.No</th>
+              <th>Present</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            {% for x,y in attendance_map.items %}
+              <tr>
+                <!-- <td>
+                  {{ board.name }}
+                  <small class="text-muted d-block">{{ board.description }}</small>
+                </td> -->
+                <td class="align-middle">{{x}}</td>
+                {% if y == "Present" %}
+                  <td class="align-middle" style="color: green">{{y}}</td>
+                {% else %}
+                  <td class="align-middle" style="color: red">{{y}}</td>
+                {% endif %}
+
+                
+                <!-- <td class="align-middle"></td>
+                <td></td> -->
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

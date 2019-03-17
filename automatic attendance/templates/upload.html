@@ -1,0 +1,119 @@
+{% load static %}<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>hack fest</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+     /* @font-face {
+     font-family: myFirstFont;
+     src: url(/home/likki/hf/hfn/hfnapp/norwester/norwester.otf);
+     } */
+    /* *{
+       font-family: myFirstFont;
+     } */
+
+     body {
+       background-color: #eeeeee;
+     }
+     .tophead {
+       text-align: center;
+       background-color: #424242;
+       padding: 10;
+       /* background: rgba(33,150,243,0.3); */
+       color: #f1f1f1;
+       font-family: "Segoe UI",Arial,sans-serif;
+       border-left: 100px;
+       border-right: 100px;
+       letter-spacing: 1.25px;
+       line-height: 0.5;
+     }
+     .sidehead {
+       text-align: center;
+       color: #ffffff;
+       background-color: #2196f3;
+       padding: 20;
+     }
+     div{
+       padding : 15px 15px 5px 15px;
+     }
+     .imageform{
+       margin: auto;
+       width: 50%;
+       text-align: center;
+     }
+
+     .analyse {
+    display: block;
+    width: 115px;
+    height: 30px;
+    background: #2196f3;
+    padding: 8px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    border: 10px 10px 10px 10px;
+   }
+
+   .transf{
+    transform: rotate(270deg);
+    display: block;
+    max-width:300px;
+    max-height:700px;
+    margin -top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+   }
+
+   .imgdiv{
+    margin: auto;
+    text-align: center;
+   }
+
+   </style>
+</head>
+
+<body>
+
+
+<div class="container-fluid">
+  <div class="tophead" >
+      <h3>SMART ATTENDANCE SYSTEM</h3>
+  </div>
+
+    {% if uploaded_file_url %}
+    <div class="imageform">
+      <p>Image Uploaded: </p> <hr/>
+      <div class="imgdiv">
+        <img class="transf" src="{{ uploaded_file_url }}"/>
+      </div>
+      <div style="text-align:center">
+        <form method="post" action="{% url 'home' %}">
+          {% csrf_token %}
+         <div class="imageform">
+           <input type="hidden" name="image_url" value="{{ uploaded_file_url }}"> <hr/>
+           <button type="submit" class="btn btn-primary ">Analyse</button>
+          </div>
+        </form>
+          <!-- <a href="{% url 'home' %}" >{{ image_url}}</a> -->
+      </div>
+    </div>
+    <!-- <button class="analyse btn btn-primary "><a href="{% url 'home' %}">Analyse</a></button> -->
+
+   {% else %}
+
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="imageform">
+      <input type="file" name="myfile"> <hr/>
+      <button type="submit" class="btn btn-primary ">Upload</button>
+     </div>
+   </form>
+
+   {% endif %}
+
+
+
+</body>
+</html>
